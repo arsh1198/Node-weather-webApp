@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const hbs = require ('hbs')
 const app = express()
+const port = process.env.PORT || 3000 
 const request =  require('request')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
@@ -75,7 +76,7 @@ app.get('/*',(req,res) => {
         errorMessage: '404 Page not found'
     })
 })
-app.listen(3000, () => {
-    console.log('3000')
+app.listen(port, () => {
+    console.log(port)
 })
 
