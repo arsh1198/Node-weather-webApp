@@ -1,4 +1,5 @@
 const request = require('request')
+const datefns = require('date-fns')
 const forecast = (latitude, longitude, callback) => {
     const url = 'https://api.darksky.net/forecast/b0422226b6861e4c519e5a9de9945162/'+latitude+','+longitude+'?units=si'
 
@@ -12,7 +13,9 @@ const forecast = (latitude, longitude, callback) => {
         else{
             const temp = body.currently.temperature
             const precip = body.currently.precipProbability
-            callback(undefined, body.daily.data[0].summary + ' It is currently '+temp+' degrees out. There is a '+precip+'% chance of rain.')
+            const rise = body.daily.data[0].sunriseTime
+            const set = body.daily.data[0].sunsetTime
+            callback(undefined, body.daily.data[0].summary + ' It is currently '+temp+' degrees out. There is a '+precip+'% chance of rain. Sunrise: '+datefns.fromUnixTime(rise)+"\n"+' Sunset: '+datefns.fromUnixTime(set))
         }
     })
 }
