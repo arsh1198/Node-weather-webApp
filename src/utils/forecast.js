@@ -15,7 +15,8 @@ const forecast = (latitude, longitude, callback) => {
             const precip = body.currently.precipProbability
             const rise = body.daily.data[0].sunriseTime
             const set = body.daily.data[0].sunsetTime
-            callback(undefined, body.daily.data[0].summary + ' It is currently '+temp+' degrees out. There is a '+precip+'% chance of rain. Sunrise: '+datefns.fromUnixTime(rise)+"\n"+' Sunset: '+datefns.fromUnixTime(set))
+            const forecast = body.daily.data[0].summary + ' It is currently '+temp+' degrees out. There is a '+precip+'% chance of rain. Sunrise: '+datefns.fromUnixTime(rise)+"\n"+' Sunset: '+datefns.fromUnixTime(set)
+            callback(undefined, {forecast, ...body} )
         }
     })
 }
