@@ -9,7 +9,7 @@ const weather = ()=>{
             console.log(data.error)
         }
         else{
-            document.getElementById("weather").innerHTML = "<b>"+data.location+"</b>" +"<br><br>"+ data.forecastData
+            document.getElementById("weather").innerHTML = "<b>"+data.location+"</b>" +"<br><br>"+ data.forecast
         }
     })
 })}
